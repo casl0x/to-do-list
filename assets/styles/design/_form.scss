@@ -1,0 +1,24 @@
+.todo-form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: $color-form;
+    border-radius: 20px;
+    margin-top: 15px;
+    &-task {
+        flex: 1;
+        border: none;
+        outline: none;
+        background: transparent;
+        padding: 10px 25px;
+    }
+    &-btn {
+        border: none;
+        outline: none;
+        padding: 10px 25px;
+        background: $color-btn;
+        color: $color-title;
+        border-radius: 0 20px 20px 0;
+        cursor: pointer;
+    }
+}

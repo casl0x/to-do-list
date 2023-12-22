@@ -1,0 +1,26 @@
+body {
+    background: $color-bg;
+    font: {
+        family: $font-text;
+        size: 1.5rem;
+        weight: 600;
+    }
+}
+h1 {
+    font: {
+        family: $font-title;
+        size: 2.5rem;
+        weight: 400;
+    }
+    color: $color-title;
+}
+img {
+    pointer-events: none;
+}
+.todo {
+    background: $color-bg-form;
+    max-width: 80vh;
+    margin: 100px auto;
+    padding: 40px 20px;
+    border-radius: 10px;
+}

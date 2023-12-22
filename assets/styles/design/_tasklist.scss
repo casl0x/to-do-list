@@ -1,0 +1,27 @@
+.task-list {
+    margin-top: 20px;
+    border-top: solid 3px $color-btn;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.task-todo {
+    width: 90%;
+    display: flex;
+    gap: 10px;
+    &-check {
+        cursor: pointer;
+    }
+    &-deletebtn {
+        flex: 3;
+        align-items: flex-end;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+    }
+}
+.done {
+    text-decoration: line-through;
+}
