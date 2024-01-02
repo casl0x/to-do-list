@@ -1,7 +1,6 @@
 import taskManager from './localStorage.js';
 
 const uiManager = (() => {
-    const taskForm = document.querySelector('.todo-form');
     const taskInput = document.querySelector('.todo-form-task');
     const taskList = document.querySelector('.task-list');
 
@@ -44,7 +43,7 @@ const uiManager = (() => {
     
     return {
         initializeUI() {
-            loadTasks;
+            taskManager.loadTasks()
             taskForm.addEventListener('submit', event => {
                 event.preventDefault();
                 taskManager.addTask(taskInput.value);
@@ -56,5 +55,5 @@ const uiManager = (() => {
     };
 
 })();
-
-export default uiManager;
+ 
+export {uiManager, createTaskElement};

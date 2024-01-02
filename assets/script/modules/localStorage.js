@@ -1,3 +1,5 @@
+import { createTaskElement } from './UIManager.js';
+
 const taskManager = (() => {
     let tasks = [];
 
@@ -5,8 +7,8 @@ const taskManager = (() => {
         const storedTask = localStorage.getItem('tasks');
         if (storedTask) {
             tasks = JSON.parse(storedTask);
-            tasks.forEach(tasks => {
-                createTaskElement(tasks);
+            tasks.forEach(task => {
+                createTaskElement(task);
             });
         }
     };
