@@ -54,7 +54,7 @@ table {
 }
 
 body {
-  background: rgb(96, 108, 56);
+  background: rgb(249, 247, 236);
   font-family: "Barlow", sans-serif;
   font-size: 1.5rem;
   font-weight: 600;
@@ -62,8 +62,9 @@ body {
 
 h1 {
   font-family: "Anton", sans-serif;
-  font-size: 2.5rem;
+  font-size: 2.25rem;
   font-weight: 400;
+  text-align: center;
   color: rgb(254, 250, 224);
 }
 
@@ -71,8 +72,13 @@ img {
   pointer-events: none;
 }
 
+button {
+  background-color: transparent;
+  border: none;
+}
+
 .todo {
-  background: rgb(188, 108, 37);
+  background: rgb(170, 170, 170);
   max-width: 80vh;
   margin: 100px auto;
   padding: 40px 20px;
@@ -81,26 +87,25 @@ img {
 
 .todo-form {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  background: rgb(221, 161, 94);
-  border-radius: 20px;
-  margin-top: 15px;
+  background: rgb(187, 187, 187);
+  border-radius: 15px;
+  margin: 3vh auto;
+  width: 75%;
+  gap: 2vh;
 }
-.todo-form-task {
-  flex: 1;
-  border: none;
-  outline: none;
-  background: transparent;
-  padding: 10px 25px;
+.todo-form-closebtn {
+  position: relative;
+  left: 26vh;
+  padding-top: 2vh;
 }
 .todo-form-btn {
+  width: 100%;
   border: none;
   outline: none;
   padding: 10px 25px;
-  background: rgb(40, 54, 24);
-  color: rgb(254, 250, 224);
-  border-radius: 0 20px 20px 0;
+  background: rgb(184, 197, 118);
   cursor: pointer;
 }
 
@@ -110,34 +115,31 @@ img {
 
 .task-list {
   margin-top: 20px;
-  border-top: solid 3px rgb(40, 54, 24);
+  border-top: solid 3px rgb(184, 197, 118);
   padding: 12px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
 }
-
-.task-todo {
-  width: 90%;
+.task-list-item {
   display: flex;
-  gap: 10px;
-}
-.task-todo-check {
-  cursor: pointer;
-}
-.task-todo-deletebtn {
-  flex: 3;
-  align-items: flex-end;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-}
-
-.done {
-  text-decoration: line-through;
+  flex-direction: row;
 }
 
 .open-form {
-  background: transparent;
-  border: solid 1px black;
+  display: block;
+  margin: 1vh auto;
+  width: 20vh;
+  cursor: pointer;
+  background: rgb(184, 197, 118);
+  color: rgb(45, 45, 45);
+  border: 1px solid rgb(170, 170, 170);
+  border-radius: 4px;
+  padding: 0.8em 2em;
+  transition: 0.2s;
+}
+.open-form:hover {
+  transform: translate(-0.25rem, -0.25rem);
+  background: rgb(214, 190, 153);
+  box-shadow: 0.25rem 0.25rem rgb(184, 197, 118);
 }/*# sourceMappingURL=main.css.map */

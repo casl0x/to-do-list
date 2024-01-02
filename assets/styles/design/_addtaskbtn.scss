@@ -1,4 +1,17 @@
 .open-form {
-    background: transparent;
-    border:  solid 1px black;
+    display: block;
+    margin: 1vh auto;
+    width: 20vh;
+    cursor: pointer;
+    background: $color-btn;
+    color: $color-txt;
+    border: 1px solid $color-bg-form;
+    border-radius: 4px;
+    padding: 0.8em 2em;
+    transition: 0.2s;
+    &:hover {
+        transform: translate(-0.25rem, -0.25rem);
+        background: $color-hover;
+        box-shadow: 0.25rem 0.25rem $color-btn;
+    }
 }

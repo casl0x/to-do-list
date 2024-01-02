@@ -1,12 +1,11 @@
-import  uiManager  from "./UIManager";
-uiManager;
+import { reset } from "./UI.js";
 
-const taskManager = (() => {
-    const taskForm = document.querySelector('.todo-form');
-    const titleTask = document.querySelector('.todo-form-task');
-    const descriptionTask = document.querySelector('.todo-form-description');
-    const taskList = document.querySelector('.task-list');
+export const taskForm = document.querySelector('.todo-form');
+export const titleTask = document.querySelector('.todo-form-task');
+export const descriptionTask = document.querySelector('.todo-form-description');
+const taskList = document.querySelector('.task-list');
 
+const taskManager = () => {
     const taskData = [];
     let currentTask = {};
 
@@ -29,12 +28,12 @@ const taskManager = (() => {
         taskList.innerHTML = '';
         taskData.forEach(({id, title, description}) => 
             taskList.innerHTML +=
-                `<div class="task" id="${id}">
+                `<div class="task-list-item" id="${id}">
                     <input type="checkbox">
-                    <p>${title}</p>
-                    <p>${description}</p>
-                    <button onclick="editTask(this)" type="button" class="btn"><img src="assets/img/pen-solid.svg" alt="edit button"></button>
-                    <button onclick="deleteTask(this)" type="button" class="btn"><img src="assets/img/trash-can-regular.svg" alt="delete button"></button>
+                    <p class="task-list-item-title">${title}</p>
+                    <p class="task-list-item-description">${description}</p>
+                    <button onclick="editTask(this)" type="button" class="task-list-item-btn"><img src="assets/img/pen-solid.svg" alt="edit button"></button>
+                    <button onclick="deleteTask(this)" type="button" class="task-list-item-btn"><img src="assets/img/trash-can-regular.svg" alt="delete button"></button>
                 </div>`
         ); 
     };
@@ -43,6 +42,6 @@ const taskManager = (() => {
         e.preventDefault();
         addTask();
     });
-})();
+};
 
 export default taskManager;

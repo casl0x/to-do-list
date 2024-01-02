@@ -9,13 +9,18 @@ body {
 h1 {
     font: {
         family: $font-title;
-        size: 2.5rem;
+        size: 2.25rem;
         weight: 400;
     }
+    text-align: center;
     color: $color-title;
 }
 img {
     pointer-events: none;
+}
+button {
+    background-color: transparent;
+    border: none;
 }
 .todo {
     background: $color-bg-form;

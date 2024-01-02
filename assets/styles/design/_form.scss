@@ -1,24 +1,23 @@
 .todo-form {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
     background: $color-form;
-    border-radius: 20px;
-    margin-top: 15px;
-    &-task {
-        flex: 1;
-        border: none;
-        outline: none;
-        background: transparent;
-        padding: 10px 25px;
+    border-radius: 15px;
+    margin: 3vh auto;
+    width: 75%;
+    gap: 2vh;
+    &-closebtn {
+        position: relative;
+        left: 26vh;
+        padding-top: 2vh;
     }
     &-btn {
+        width: 100%;
         border: none;
         outline: none;
         padding: 10px 25px;
-        background: $color-btn;
-        color: $color-title;
-        border-radius: 0 20px 20px 0;
+        background: $color-btn;;
         cursor: pointer;
     }
 }
