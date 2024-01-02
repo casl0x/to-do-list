@@ -1,8 +1,12 @@
 // importer les modules dans le fichier principal
-import openfolder from './modules/openForm.js'
+import openForm from './modules/openForm.js'
 import taskManager from './modules/localStorage.js';
-import uiManager from './modules/UIManager.js';
+import {uiManager, reset} from './modules/UIManager.js'
 
-
+// activer les modules 
+openForm;
+taskManager;
+uiManager;
+reset(); 
 
 

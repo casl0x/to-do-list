@@ -1,57 +1,48 @@
-import { createTaskElement } from './UIManager.js';
+import  uiManager  from "./UIManager";
+uiManager;
 
 const taskManager = (() => {
-    let tasks = [];
+    const taskForm = document.querySelector('.todo-form');
+    const titleTask = document.querySelector('.todo-form-task');
+    const descriptionTask = document.querySelector('.todo-form-description');
+    const taskList = document.querySelector('.task-list');
 
-    const loadTasks = () => {
-        const storedTask = localStorage.getItem('tasks');
-        if (storedTask) {
-            tasks = JSON.parse(storedTask);
-            tasks.forEach(task => {
-                createTaskElement(task);
-            });
-        }
-    };
+    const taskData = [];
+    let currentTask = {};
 
-    const saveTasks = () => {
-        localStorage.setItem('tasks', JSON.stringify(tasks));
-    };
-
-    const addTask = (taskName, taskDescription) => {
-        const newTask = {
-            id: Date.now,
-            name: taskName,
-            description: taskDescription, 
-            completed: false,
+    const addTask = () => {
+        const dataArrIndex = taskData.findIndex((item) => item.id === currentTask.id);
+        const taskItem = {
+            id: `${titleTask.value.toLowerCase().split(" ").join("-")}-${Date.now()}`,
+            title: titleTask.value,
+            description: descriptionTask.value,
         };
-        tasks.push(newTask);
-        saveTasks();
-        return newTask
-    };
 
-    const markTaskAsDone = (taskId) => {
-        const tasksIndex =  tasks.findIndex(task => task.id === taskId)
-        if (tasksIndex !== -1){
-            tasks[tasksIndex].completed = true;
-            saveTasks();
-            return tasks[tasksIndex];
+        if (dataArrIndex === -1) {
+            taskData.unshift(taskItem);
         }
-        return null;
+        updateTaskList();
+        reset();
     };
 
-    const deleteTask = (taskId) => {
-        tasks = tasks.filter(task => task.id === taskId);
-        saveTasks();
-    }
-
-    return {
-        loadTasks,
-        saveTasks,
-        addTask,
-        markTaskAsDone,
-        deleteTask,
-        tasks,
+    const updateTaskList = () => {
+        taskList.innerHTML = '';
+        taskData.forEach(({id, title, description}) => 
+            taskList.innerHTML +=
+                `<div class="task" id="${id}">
+                    <input type="checkbox">
+                    <p>${title}</p>
+                    <p>${description}</p>
+                    <button onclick="editTask(this)" type="button" class="btn"><img src="assets/img/pen-solid.svg" alt="edit button"></button>
+                    <button onclick="deleteTask(this)" type="button" class="btn"><img src="assets/img/trash-can-regular.svg" alt="delete button"></button>
+                </div>`
+        ); 
     };
+
+    taskForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        addTask();
+    });
 })();
 
 export default taskManager;

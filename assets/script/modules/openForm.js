@@ -1,3 +1,4 @@
+import { reset } from "./UIManager";
 
 const openForm = (() => {
     const taskForm = document.querySelector('.todo-form');
@@ -9,8 +10,8 @@ const openForm = (() => {
     );
 
     closeTaskFormBtn.addEventListener('click', () =>
-        taskForm.classList.toggle('hidden')
+        reset()
     );
-});
+})();
 
 export default openForm;

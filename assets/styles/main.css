@@ -104,6 +104,10 @@ img {
   cursor: pointer;
 }
 
+.hidden {
+  display: none;
+}
+
 .task-list {
   margin-top: 20px;
   border-top: solid 3px rgb(40, 54, 24);
@@ -131,4 +135,9 @@ img {
 
 .done {
   text-decoration: line-through;
+}
+
+.open-form {
+  background: transparent;
+  border: solid 1px black;
 }/*# sourceMappingURL=main.css.map */
