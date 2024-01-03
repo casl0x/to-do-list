@@ -1,43 +1,51 @@
-import { updateTaskList } from "./task";
+import { updateTaskList } from "./task.js";
 
 const taskManager = () => {
-    let currentTask = {};
-    const taskData = JSON.parse(localStorage.getItem('data')) || [];
+    let taskData = localStorage.getItem('data') ? JSON.parse(localStorage.getItem('data')) : [];
 
+    // ajout d'une tache dans la stockage
     const addTask = () => {
         const titleTask = document.querySelector('.todo-form-task');
         const descriptionTask = document.querySelector('.todo-form-description');
-        const dataArrIndex = taskData.findIndex((item) => item.id === currentTask.id);
-        const taskItem = {
+        const newTask = {
             id: `${titleTask.value.toLowerCase().split(" ").join("-")}-${Date.now()}`,
             title: titleTask.value,
             description: descriptionTask.value,
         };
-        
-        if (dataArrIndex === -1) {
-            taskData.unshift(taskItem);
-        } else {
-            taskData[dataArrIndex] = taskItem;
-        }
-        localStorage.setItem('data', JSON.stringify(taskData))
-
-        updateTaskList();
-        reset();
+        taskData.push(newTask);
+        localStorage.setItem('data', JSON.stringify(taskData));
+            
     };
+    updateTaskList();
 
+    // supprimer les tâches
+    const deleteTask = (taskId, taskElement) => {
+        const dataArrIndex = taskData.findIndex((item) => item.id === taskId);
+        if (dataArrIndex !== 1) {
+            taskData.splice(dataArrIndex, 1);
+            localStorage.setItem('data', JSON.stringify(taskData));
+            updateTaskList();
+        } else {
+            console.error("task not found in taskData")
+        }
+    };
+    // valider la tâche 
     const taskForm = document.querySelector('.todo-form');
     taskForm.addEventListener('submit', (e) => {
         e.preventDefault();
         addTask();
     });
 
+    const taskList = document.querySelector('.task-list');
+    taskList.addEventListener('click', (e) => {
+        const clickedElement = e.target;
+        if (clickedElement.classList.contains('task-list-item-btn')) {
+            const taskElement = clickedElement.parentNode;
+            const taskId = taskElement.id;
+            deleteTask(taskId, taskElement);
+        }
+    });
+    console.log(taskData)
 };
 
 export default taskManager;
-
-// const reset = () => {
-//     titleTask.value = "";
-//     descriptionTask.value = "";
-//     taskForm.classList.toggle("hidden");
-//     currentTask = {};
-// }
