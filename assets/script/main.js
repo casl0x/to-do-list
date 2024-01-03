@@ -1,8 +1,11 @@
 // import des modules
-import { openForm } from "./modules/form.js";
+import { toggleForm } from "./modules/form.js";
 import taskManager from "./modules/storage.js";
+import { deleteTask } from "./modules/task.js";
 
 
 // activer les modules
-openForm();
+
+document.querySelector('.task-list-item-btn').addEventListener('click', deleteTask)
+toggleForm();
 taskManager();
