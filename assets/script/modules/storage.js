@@ -1,7 +1,11 @@
 import { updateTaskList } from "./task.js";
 
 const taskManager = () => {
-    let taskData = localStorage.getItem('data') ? JSON.parse(localStorage.getItem('data')) : [];
+    let taskData = [];
+
+    document.addEventListener('DOMContentLoaded', () => {
+        taskData = JSON.parse(localStorage.getItem('data')) || [];
+    })
 
     // ajout d'une tache dans la stockage
     const addTask = () => {
@@ -14,12 +18,11 @@ const taskManager = () => {
         };
         taskData.push(newTask);
         localStorage.setItem('data', JSON.stringify(taskData));
-            
+        updateTaskList();    
     };
-    updateTaskList();
 
     // supprimer les tâches
-    const deleteTask = (taskId, taskElement) => {
+    const deleteTask = (taskId) => {
         const dataArrIndex = taskData.findIndex((item) => item.id === taskId);
         if (dataArrIndex !== 1) {
             taskData.splice(dataArrIndex, 1);
@@ -45,7 +48,10 @@ const taskManager = () => {
             deleteTask(taskId, taskElement);
         }
     });
-    console.log(taskData)
+    
 };
+taskManager();
+updateTaskList();
+
 
 export default taskManager;
