@@ -5,20 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-do List</title>
     <link rel="stylesheet" href="./assets/styles/main.css">
-    <script type="module"  src="./assets/script/main.js" defer></script>
+    
 </head>
 <body>
     <section class="todo">
         <h1>To-do List</h1>
         <button class="open-form" id="open-form">Add new task + </button>
         <form class="todo-form hidden" id="task-form">
-            <button type="button" aria-label="close" class="todo-form-closebtn"><img src="./assets/img/xmark-solid.svg" alt="close button"></button>
+            <button type="button" class="todo-form-closebtn"><img src="./assets/img/xmark-solid.svg" alt="close button"></button>
             <input type="text" class="todo-form-task" placeholder="Add a new task" id="title-input" required/>
-            <textarea class="todo-form-description" placeholder="Description" id="description-input" cols="30" rows="10"></textarea>
-            <button class="todo-form-btn" id="add-task-btn" type="submit"><img src="./assets/img/check-solid.svg" alt="validation button"></button>
+            <button class="todo-form-btn" id="enter"><img src="./assets/img/check-solid.svg" alt="validation button"></button>
         </form>
-        <div class="task-list" id="task-list"></div>
+        <ul class="task-list" id="task-list"></ul>
     </section>
+    <script type="module"  src="./assets/script/main.js" defer></script>
 
 </body>
 </html>

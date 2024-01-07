@@ -1,57 +1,51 @@
-import { updateTaskList } from "./task.js";
+function taskManager () {
+        // management des tâches
+    const taskData = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : [] ;
 
-const taskManager = () => {
-    let taskData = [];
+    let task = document.getElementById('title-input');
+    let taskList = document.getElementById('task-list');
 
-    document.addEventListener('DOMContentLoaded', () => {
-        taskData = JSON.parse(localStorage.getItem('data')) || [];
+        // bouton entrer une tâche
+    document.getElementById("enter").addEventListener("click", () => {
+        createItem(task)
     })
 
-    // ajout d'une tache dans la stockage
-    const addTask = () => {
-        const titleTask = document.querySelector('.todo-form-task');
-        const descriptionTask = document.querySelector('.todo-form-description');
-        const newTask = {
-            id: `${titleTask.value.toLowerCase().split(" ").join("-")}-${Date.now()}`,
-            title: titleTask.value,
-            description: descriptionTask.value,
-        };
-        taskData.push(newTask);
-        localStorage.setItem('data', JSON.stringify(taskData));
-        updateTaskList();    
+    function updateTaskList() {
+        let items = ""
+        for (let i = 0; i < taskData.length; i++) { 
+            items += `
+                <li class="task">
+                    <input type="checkbox" id="taskDone">
+                    <p>${taskData[i]}</p>
+                    <button class="deleteBtn"><img src="./assets/img/trash-can-regular.svg" alt="delete"></button>
+                </li>
+            `
+        } 
+    taskList.innerHTML = items;
+    taskDelete();
     };
 
-    // supprimer les tâches
-    const deleteTask = (taskId) => {
-        const dataArrIndex = taskData.findIndex((item) => item.id === taskId);
-        if (dataArrIndex !== 1) {
-            taskData.splice(dataArrIndex, 1);
-            localStorage.setItem('data', JSON.stringify(taskData));
-            updateTaskList();
-        } else {
-            console.error("task not found in taskData")
-        }
+    function taskDelete(){
+        let deleteBtn = document.querySelectorAll(".deleteBtn")
+        deleteBtn.forEach((dB, i) => {
+        dB.addEventListener("click", () => { deleteItem(i) })
+        })
+    }
+
+    function createItem(task){
+        taskData.push(task.value)
+        localStorage.setItem('items', JSON.stringify(taskData))
+        location.reload()
+    }
+
+    function deleteItem(i){
+        taskData.splice(i,1)
+        localStorage.setItem('items', JSON.stringify(taskData))
+        location.reload()
+      }
+
+    window.onload = function() {
+        updateTaskList()
     };
-    // valider la tâche 
-    const taskForm = document.querySelector('.todo-form');
-    taskForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        addTask();
-    });
-
-    const taskList = document.querySelector('.task-list');
-    taskList.addEventListener('click', (e) => {
-        const clickedElement = e.target;
-        if (clickedElement.classList.contains('task-list-item-btn')) {
-            const taskElement = clickedElement.parentNode;
-            const taskId = taskElement.id;
-            deleteTask(taskId, taskElement);
-        }
-    });
-    
-};
-taskManager();
-updateTaskList();
-
-
+}
 export default taskManager;
